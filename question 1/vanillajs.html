@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+  <title>Vanilla JS</title>
+</head>
+<body>
+<input type="text" placeholder="enter number" name="amount" onchange="getCount(this)">
+<p id="result">Result: </p>
+  <p id="breakup"></p>
+  <script id="jsbin-javascript">
+var denominations = [50,20,10,5,2,1];
+var calcBreakup = function (amount){
+ var values = [];
+ var amt = amount;
+ denominations.forEach(function(item){
+   if(amt>0){
+   values.push(Math.floor(amt/item))
+   amt = amt%item;
+   }
+ });
+ return values;
+}
+
+var getCount = function(ele) {
+ var values  = calcBreakup(ele.value);
+ var result = 0;
+  var breakup = "";
+ values.forEach(function(item,index){
+   if(item!==0){
+     breakup+=denominations[index]+"x";
+     breakup+=item+" ";
+   }
+   result+=item;
+ });
+ document.getElementById('breakup').innerHTML= ele.value+"=>"+result+"=>{"+breakup+"}";
+}
+</script>
+</body>
+</html>
